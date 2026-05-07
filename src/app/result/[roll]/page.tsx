@@ -81,11 +81,19 @@ export default function Result() {
         {/* Badge Section */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
-            <div className={`p-6 rounded-full bg-slate-900/80 border-2 ${isSnake ? "border-emerald-500/50" : "border-purple-500/50"}`}>
+            <div className={`p-2 rounded-full bg-slate-900/80 border-2 ${isSnake ? "border-emerald-500/50" : "border-purple-500/50"} overflow-hidden w-40 h-40 flex items-center justify-center`}>
               {isSnake ? (
-                <LucideShieldAlert className="w-20 h-20 text-emerald-500 animate-pulse" />
+                <img 
+                  src="/snake_badge.png" 
+                  alt="Cute Snake Mascot" 
+                  className="w-full h-full object-contain animate-bounce" 
+                />
               ) : (
-                <LucideCrown className="w-20 h-20 text-purple-500 animate-bounce" />
+                <img 
+                  src="/loyal_badge.png" 
+                  alt="Loyal Legend Badge" 
+                  className="w-full h-full object-contain animate-pulse" 
+                />
               )}
             </div>
           </div>
@@ -166,6 +174,14 @@ export default function Result() {
             Restart
           </Link>
         </div>
+
+        <Link
+          href="/leaderboard"
+          className="w-full flex items-center justify-center gap-2 text-slate-500 hover:text-emerald-400 transition-colors text-xs font-bold uppercase tracking-widest pt-2"
+        >
+          <LucideTrendingUp className="w-4 h-4" />
+          Batch Leaderboard
+        </Link>
 
         <p className="text-center text-[10px] text-slate-600 uppercase tracking-widest pt-2">
           Verified Result • SE Session 2024–2028

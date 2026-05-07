@@ -9,6 +9,16 @@ export default function Home() {
   const [rollNumber, setRollNumber] = useState("");
   const router = useRouter();
 
+  const [stats, setStats] = useState({ total: 0, snakes: 0 });
+
+  useEffect(() => {
+    fetch("/api/leaderboard").then(res => res.json()).then(data => {
+      if (data.success) {
+        setStats({ total: data.totalParticipants, snakes: data.stats.snakesCount });
+      }
+    });
+  }, []);
+
   const handleStart = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !rollNumber) return;
@@ -74,7 +84,28 @@ export default function Home() {
           </button>
         </form>
 
-        <p className="text-center text-xs text-slate-500 pt-4">
+        <div className="pt-6 border-t border-slate-800 space-y-4">
+          <div className="flex justify-between items-center gap-4">
+            <div className="flex-1 glass p-3 rounded-2xl text-center">
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Tested</p>
+              <p className="text-xl font-black text-white">{stats.total}</p>
+            </div>
+            <div className="flex-1 glass p-3 rounded-2xl text-center">
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Snakes</p>
+              <p className="text-xl font-black text-emerald-500">{stats.snakes}</p>
+            </div>
+          </div>
+          
+          <Link 
+            href="/leaderboard"
+            className="flex items-center justify-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-sm font-medium group"
+          >
+            View Leaderboard
+            <LucideArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
+        <p className="text-center text-[10px] text-slate-600 pt-2 uppercase tracking-widest">
           Session 2024–2028 • Built for fun 🐍
         </p>
       </div>
