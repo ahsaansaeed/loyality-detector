@@ -15,20 +15,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Check if roll number already exists
-    const existingUser = await User.findOne({ rollNumber });
-    if (existingUser) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: "Roll number already submitted", 
-          rollNumber,
-          existingResult: existingUser.result 
-        },
-        { status: 409 }
-      );
-    }
-
     // Calculate scores
     let snakeScore = 0;
     let loyaltyScore = 0;

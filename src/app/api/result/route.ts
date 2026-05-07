@@ -15,7 +15,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const user = await User.findOne({ rollNumber });
+    const user = await User.findOne({ rollNumber }).sort({ createdAt: -1 });
 
     if (!user) {
       return NextResponse.json(

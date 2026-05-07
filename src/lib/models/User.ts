@@ -9,7 +9,6 @@ const UserSchema = new Schema({
   rollNumber: {
     type: String,
     required: [true, "Please provide a roll number"],
-    unique: true,
     trim: true,
   },
   answers: {
