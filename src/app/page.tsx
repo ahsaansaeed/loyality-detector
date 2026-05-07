@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { LucideShieldAlert, LucideCrown, LucideArrowRight } from "lucide-react";
 
 export default function Home() {
